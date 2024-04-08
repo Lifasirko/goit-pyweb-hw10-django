@@ -46,3 +46,4 @@ def note(request):
 def detail(request, note_id):
     note = get_object_or_404(Note, pk=note_id)
     return render(request, 'noteapp/detail.html', {"note": note})
+
