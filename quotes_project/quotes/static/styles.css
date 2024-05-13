@@ -1,0 +1,61 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #f39c12;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.quote {
+    background: white;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.text {
+    font-size: 24px;
+}
+
+.author {
+    font-size: 20px;
+    color: #333;
+}
+
+.tags {
+    margin-top: 10px;
+}
+
+.tag {
+    display: inline-block;
+    background: #3498db;
+    color: white;
+    padding: 5px;
+    margin-right: 5px;
+    border-radius: 3px;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: row; /* Забезпечує розташування елементів в рядок */
+    align-items: flex-start; /* Вирівнювання елементів за початком їх вмісту */
+    justify-content: space-between; /* Розділяє елементи на максимально можливу відстань */
+    width: 100%; /* Забезпечує, що контейнер займає всю ширину батьківського елемента */
+}
+
+.quotes {
+    flex-grow: 3;  /* Займає більшу частину простору */
+}
+
+.top-tags {
+    flex-grow: 1;  /* Займає меншу частину простору */
+    margin-left: 2%;  /* Додаємо відступ між колонками */
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Бібліотека цитат</title>
+<!--    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"/>-->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1><a href="{% url 'quotes:home' %}">Бібліотека цитат</a></h1>
+        <nav>
+            {% if user.is_authenticated %}
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Вийти</button>
+                </form>
+                <form action="{% url 'quotes:add_author' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Додати автора</button>
+                </form>
+                <form action="{% url 'quotes:add_quote' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Додати цитату</button>
+                </form>
+                <form action="{% url 'quotes:scrap_quotes' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Скрапити цитати</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}">Увійти</a>
+                <a href="{% url 'quotes:signup' %}">Зареєструватися</a>
+            {% endif %}
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>© 2024 Quote Library. All rights reserved.</p>
+    </footer>
+</body>
+</html>

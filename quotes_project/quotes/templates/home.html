@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+
+    </form>
+    <div class="quotes">
+        {% for quote in page_obj.object_list %}
+        <div class="quote">
+            <span class="text">{{ quote.text }}</span>
+            <span class="author">{{ quote.author.name }}</span>
+            <div class="tags">
+                {% for tag in quote.tags_list %}
+                <a href="{% url 'quotes:quotes_by_tag' tag %}" class="tag">{{ tag }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        {% empty %}
+        <p>No quotes available.</p>
+        {% endfor %}
+    </div>
+    <div class="top-tags">
+        <h2>Топ 10 тегів</h2>
+        <ul>
+            {% for tag, count in top_tags %}
+            <li><a href="{% url 'quotes:quotes_by_tag' tag %}">{{ tag }} ({{ count }})</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}

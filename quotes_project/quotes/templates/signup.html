@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<body>
+    <h2>Зареєструватись</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Зареєструватись</button>
+    </form>
+</body>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<body>
+    <h2>Увійти</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+    {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+    <p><a href="{% url 'quotes:signup' %}">Зареєструватись</a></p> <!-- Переконайтесь, що простір імен використовується правильно -->
+</body>
+{% endblock %}
