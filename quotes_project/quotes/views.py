@@ -2,8 +2,11 @@ import requests
 from bs4 import BeautifulSoup
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import PasswordResetView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 
 from .forms import AuthorForm, QuoteForm, SignUpForm
 from .models import Quote, Author
@@ -126,3 +129,13 @@ def scrap_quotes(request):
             url = 'http://quotes.toscrape.com' + url
 
     return redirect('quotes:home')
+
+
+class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
+    template_name = 'users/password_reset.html'
+    email_template_name = 'users/password_reset_email.html'
+    html_email_template_name = 'users/password_reset_email.html'
+    success_url = reverse_lazy('users:password_reset_done')
+    success_message = "An email with instructions to reset your password has been sent to %(email)s."
+    subject_template_name = 'users/password_reset_subject.txt'
+

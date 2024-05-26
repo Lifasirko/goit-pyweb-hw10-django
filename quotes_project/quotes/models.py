@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
@@ -18,3 +19,7 @@ class Quote(models.Model):
 
     def __str__(self):
         return f'"{self.text}" - {self.author.name}'
+
+
+class CustomUser(AbstractUser):
+    pass
